@@ -9,7 +9,7 @@ public class Main
         testB.i2();
         testB.i1();
 
-        InterfaceI1 testI1 = new ClassB();
+        InterfaceI1 testI1 = testB;
         testI1.i1();
         ClassB testI = (ClassB) testI1;
 
