@@ -12,13 +12,22 @@ public class FirstStream implements Runnable
     public void run()
     {
         System.out.println(Thread.currentThread().getName() + " start");
+        stock.countOfThreads++;
         while (parameter != 0)
         {
-            synchronized (stock)
-            {
-                stock.add(1000, parameter);
+            synchronized (stock) {
+                stock.add(1000);
+
+                parameter--;
+                stock.notify();
+
+                    try {
+                        if ((parameter > 0) && (stock.countOfThreads != 1))
+                            stock.wait();
+                    } catch (InterruptedException e) { }
+
             }
-            parameter--;
         }
+        stock.countOfThreads--;
     }
 }
