@@ -20,13 +20,12 @@ public class Main
             }
             System.out.println(parameter1 + " " + parameter2);
 
-            Stock newStock = new Stock(parameter1, parameter2);
-            Thread firstStream = new Thread(new FirstStream(newStock, parameter1), "FirstStream");
-            SecondStream secondStream = new SecondStream("SecondStream", newStock, parameter2);
+            Stock newStock = new Stock();
+            Thread firstStream = new Thread(new FirstStream(newStock, parameter1));
+            SecondStream secondStream = new SecondStream(newStock, parameter2);
 
             firstStream.start();
             secondStream.start();
-
         }
         catch (Exception e)
         {
@@ -34,3 +33,4 @@ public class Main
         }
     }
 }
+
