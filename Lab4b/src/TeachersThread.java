@@ -3,6 +3,7 @@ import java.util.ArrayList;
 
 public class TeachersThread extends Thread {
     private int index, nextIndex;
+    private boolean isFirst = false;
     private ArrayList<TeachersThread> teachers;
     private ArrayList<StudentsThread> students;
     private Random random = new Random();
@@ -13,31 +14,34 @@ public class TeachersThread extends Thread {
         this.teachers = teachers;
         this.students = students;
         this.index = index;
+        if (index == 0)
+        {
+            isFirst = true;
+        }
     }
 
     @Override
     public void run()
     {
+
         if (index + 1 < teachers.size())
             nextIndex = index + 1;
         else
             nextIndex = 0;
-//
-//        if (index != 0) {
-//            synchronized (teachers.get(index)) {
-//                try {
-//                    teachers.get(index).wait();
-//                } catch (InterruptedException e) {
-//                }
-//            }
-//        }
-        //
+
         while (true) {
-            synchronized (teachers.get(index)) {
-                try {
-                    teachers.get(index).wait();
-                } catch (InterruptedException e) { }
+
+            if (!isFirst)
+            {
+                synchronized (teachers.get(index)) {
+                    try {
+                        teachers.get(index).wait();
+                    } catch (InterruptedException e) {
+                    }
+                }
             }
+            else
+                isFirst = false;
 
             synchronized (students)
             {
@@ -56,19 +60,16 @@ public class TeachersThread extends Thread {
 
                 synchronized (teachers.get(nextIndex))
                 {
+
                     teachers.get(nextIndex).notify();
+
                     if (students.size() <= 0) {
                         break;
                     }
                 }
-//
-//                synchronized (teachers.get(index)) {
-//                    try {
-//                        teachers.get(index).wait();
-//                    } catch (InterruptedException e) {
-//                    }
-//                }
-//
+
+
+
             }
         }
     }
