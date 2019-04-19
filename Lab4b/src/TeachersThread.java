@@ -40,7 +40,7 @@ public class TeachersThread extends Thread {
                     }
                 }
             }
-            else
+            else if (teachers.size() != 1)
                 isFirst = false;
 
             synchronized (students)
