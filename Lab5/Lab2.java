@@ -1,7 +1,6 @@
 public class Lab2
 {
     private Graphs graph;
-
     public Lab2(Graphs graph)
     {
         this.graph = graph;
@@ -11,12 +10,12 @@ public class Lab2
     {
         public void a()
         {
-            graph.sendMessageToTextArea("ClassA method a \n");
+            graph.textArea2.append("ClassA method a \n");
         }
 
         public void i1()
         {
-            graph.sendMessageToTextArea("InterfaceI1 method i1 \n");
+            graph.textArea2.append("InterfaceI1 method i1 \n");
         }
     }
 
@@ -24,13 +23,13 @@ public class Lab2
     {
         public void b()
         {
-            graph.sendMessageToTextArea("ClassB method b \n");
+            graph.textArea2.append("ClassB method b \n");
 
         }
 
         public void i2()
         {
-            graph.sendMessageToTextArea("InterfaceI2 method i2 \n");
+            graph.textArea2.append("InterfaceI2 method i2 \n");
         }
     }
 

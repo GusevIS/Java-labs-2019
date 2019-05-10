@@ -20,7 +20,7 @@ public class Lab3
 
         public void run()
         {
-            graph.sendMessageToTextArea(Thread.currentThread().getName() + " start \n");
+            graph.textArea3.append(Thread.currentThread().getName() + " start \n");
             stock.countOfThreads++;
             while (parameter != 0)
             {
@@ -55,7 +55,7 @@ public class Lab3
         @Override
         public void run()
         {
-            graph.sendMessageToTextArea(this.getName() + " start \n");
+            graph.textArea3.append(this.getName() + " start \n");
             stock.countOfThreads++;
             while (parameter != 0)
             {
@@ -83,8 +83,8 @@ public class Lab3
         synchronized void add(double num)
         {
             this.count += num;
-            graph.sendMessageToTextArea("add " + num + " " + Thread.currentThread().getName() + "\n");
-            graph.sendMessageToTextArea("current stock " + count + "\n");
+            graph.textArea3.append("add " + num + " " + Thread.currentThread().getName() + "\n");
+            graph.textArea3.append("current stock " + count + "\n");
         }
     }
 
@@ -94,7 +94,7 @@ public class Lab3
         {
             if (args.length != 2)
             {
-                graph.sendMessageToTextArea("Invalid number of arguments! \n");
+                graph.textArea3.append("Invalid number of arguments! \n");
                 return;
             }
 
@@ -103,10 +103,10 @@ public class Lab3
 
             if ((parameter1 < 0) || (parameter2 < 0))
             {
-                graph.sendMessageToTextArea("Invalid argument! \n");
+                graph.textArea3.append("Invalid argument! \n");
                 return;
             }
-            graph.sendMessageToTextArea(parameter1 + " " + parameter2 + "\n");
+            graph.textArea3.append(parameter1 + " " + parameter2 + "\n");
 
             Stock newStock = new Stock();
             Thread firstStream = new Thread(new FirstStream(newStock, parameter1));
@@ -117,7 +117,7 @@ public class Lab3
         }
         catch (Exception e)
         {
-            graph.sendMessageToTextArea("Invalid expression1! \n");
+            graph.textArea3.append("Invalid expression1! \n");
         }
     }
 

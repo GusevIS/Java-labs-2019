@@ -26,7 +26,7 @@ public class Lab4 {
                 }
                 catch(InterruptedException e) { }
             }
-            graph.sendMessageToTextArea(Thread.currentThread().getName() + "\n");
+            graph.textArea4.append(Thread.currentThread().getName() + "\n");
         }
     }
 
@@ -74,7 +74,7 @@ public class Lab4 {
                 synchronized (students)
                 {
                     if (students.size() > 0) {
-                        graph.sendMessageToTextArea(Thread.currentThread().getName() + "-");
+                        graph.textArea4.append(Thread.currentThread().getName() + "-");
                         int i = random.nextInt(students.size());
                         synchronized (students.get(i)) {
                             students.get(i).notify();
@@ -104,7 +104,7 @@ public class Lab4 {
     public void startLab4(String... args) {
         try {
             if (args.length != 2) {
-                graph.sendMessageToTextArea("Invalid number of arguments! \n");
+                graph.textArea4.append("Invalid number of arguments! \n");
                 return;
             }
 
@@ -112,10 +112,10 @@ public class Lab4 {
             int teachersCount = Integer.parseInt(args[1]);
 
             if ((studentsCount < 0) || (teachersCount < 1)) {
-                graph.sendMessageToTextArea("Invalid arguments! \n");
+                graph.textArea4.append("Invalid arguments! \n");
                 return;
             }
-            graph.sendMessageToTextArea(studentsCount + " " + teachersCount + "\n");
+            graph.textArea4.append(studentsCount + " " + teachersCount + "\n");
 
             ArrayList<StudentsThread> students = new ArrayList<>();
             for (int i = 0; i < studentsCount; i++)
@@ -136,7 +136,7 @@ public class Lab4 {
             }
 
         } catch (Exception e) {
-            graph.sendMessageToTextArea("Invalid expressions! \n");
+            graph.textArea4.append("Invalid expressions! \n");
             return;
         }
     }

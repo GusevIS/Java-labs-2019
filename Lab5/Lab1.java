@@ -14,7 +14,7 @@ public class Lab1
         try
         {
             if (args.length != 3) {
-                this.graph.sendMessageToTextArea("Invalid number of arguments! \n");
+                this.graph.textArea.append("Invalid number of arguments! \n");
                 return;
             }
             double [] sides = new double[3];
@@ -22,19 +22,19 @@ public class Lab1
             sides[1] = Double.parseDouble(args[1]);
             sides[2] = Double.parseDouble(args[2]);
             if ((sides[0] <= 0) || (sides[1] <= 0) || (sides[2] <= 0)){
-                this.graph.sendMessageToTextArea("arguments must be positive! \n");
+                this.graph.textArea.append("arguments must be positive! \n");
                 return;
             }
 
             if (isNotTriangle(sides))
-                this.graph.sendMessageToTextArea("These sides cannot be a triangle \n");
+                this.graph.textArea.append("These sides cannot be a triangle \n");
             else
-                this.graph.sendMessageToTextArea("These sides can be a triangle \n");
+                this.graph.textArea.append("These sides can be a triangle \n");
 
         }
         catch (Exception e)
         {
-            this.graph.sendMessageToTextArea("Invalid expression! \n");
+            this.graph.textArea.append("Invalid expression! \n");
         }
     }
 
